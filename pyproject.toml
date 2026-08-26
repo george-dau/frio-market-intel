@@ -1,0 +1,23 @@
+[project]
+name = "frio_intel"
+version = "0.1.0"
+description = "frio_intel using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=1.15.17,<2.0.0"
+]
+
+[project.scripts]
+kickoff = "frio_intel.main:kickoff"
+run_crew = "frio_intel.main:kickoff"
+plot = "frio_intel.main:plot"
+run_with_trigger = "frio_intel.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"
+project_id = "ca3545b5-bb44-4e39-a68d-eab8d79b8782"
