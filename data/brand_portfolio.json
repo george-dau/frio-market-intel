@@ -1,0 +1,17 @@
+{
+  "as_of": "2026-Q2",
+  "brands": [
+    {"name": "Frio Cola", "category": "Carbonated Soft Drinks", "positioning": "Flagship heritage cola", "price_tier": "mainstream", "target_demo": "25-54 family", "distribution_reach": "national, 96% ACV"},
+    {"name": "Frio Cola Zero", "category": "Carbonated Soft Drinks", "positioning": "Zero-sugar flagship", "price_tier": "mainstream", "target_demo": "18-44", "distribution_reach": "national, 93% ACV"},
+    {"name": "Cielo Citrus", "category": "Carbonated Soft Drinks", "positioning": "Bright citrus soda", "price_tier": "mainstream", "target_demo": "13-29", "distribution_reach": "national, 88% ACV"},
+    {"name": "Rio Frutas", "category": "Juice & Nectars", "positioning": "Latin-inspired nectars", "price_tier": "mainstream", "target_demo": "families, Hispanic-forward", "distribution_reach": "national, 74% ACV; strong TX/Southwest"},
+    {"name": "Panhandle Punch", "category": "Juice & Nectars", "positioning": "Kids' juice boxes", "price_tier": "value", "target_demo": "households w/ kids", "distribution_reach": "grocery + club, 68% ACV"},
+    {"name": "Agua Fria", "category": "Bottled Water", "positioning": "Purified value water", "price_tier": "value", "target_demo": "all", "distribution_reach": "national, 91% ACV"},
+    {"name": "Cypress Springs", "category": "Bottled Water", "positioning": "Premium Texas spring water", "price_tier": "premium", "target_demo": "25-54 urban", "distribution_reach": "regional TX/OK/NM, 41% ACV"},
+    {"name": "Volt Sports", "category": "Sports Drinks", "positioning": "Electrolyte sports hydration", "price_tier": "mainstream", "target_demo": "16-34 athletic", "distribution_reach": "national, 85% ACV; cold-chain + c-store strength"},
+    {"name": "Volt Focus", "category": "Functional (Volt Focus pilot)", "positioning": "PILOT: energy + nootropic, launched 2025-Q1 in TX c-stores", "price_tier": "premium", "target_demo": "18-34", "distribution_reach": "pilot: TX c-stores only, 6% ACV"},
+    {"name": "Marfa Tea", "category": "Tea & Coffee RTD", "positioning": "Craft iced teas", "price_tier": "premium", "target_demo": "22-40 urban", "distribution_reach": "national grocery, 52% ACV"},
+    {"name": "Dobla Cafe", "category": "Tea & Coffee RTD", "positioning": "RTD cafe-style coffee", "price_tier": "mainstream", "target_demo": "18-39 commuters", "distribution_reach": "c-store led, 61% ACV"},
+    {"name": "Frio Soda Craft", "category": "Carbonated Soft Drinks", "positioning": "Small-batch craft sodas", "price_tier": "premium", "target_demo": "25-44", "distribution_reach": "specialty + DTC, 12% ACV"}
+  ]
+}
