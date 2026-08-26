@@ -1,0 +1,21 @@
+{
+  "name": "External Research Crew",
+  "agents": ["market_researcher", "market_analyst"],
+  "tasks": [
+    {
+      "name": "research_task",
+      "description": "Research the public web to answer: {question}\nGather: 1) category size and growth rates, 2) key sub-segments, 3) new entrants and breakout brands, 4) M&A, partnerships, and investment activity by major players in the last 24 months. Every fact MUST carry its source URL inline.",
+      "expected_output": "A structured markdown list of findings grouped under headings (Market Size & Growth, Sub-segments, Entrants, M&A & Investment), each bullet ending with its source URL.",
+      "agent": "market_researcher"
+    },
+    {
+      "name": "analysis_task",
+      "description": "Using ONLY the researcher's findings, produce the insight layer for an executive brief on: {question}\nIdentify: what is changing in the market, what pattern the competitive moves reveal, and 3-5 implications for a Fortune 500 beverage manufacturer considering entry. Keep source URLs attached to the facts behind each insight.",
+      "expected_output": "Markdown with two sections: 'Market landscape insights' and 'Competitive dynamics insights', each 3-6 bullets, every bullet citing at least one URL from the findings.",
+      "agent": "market_analyst",
+      "context": ["research_task"]
+    }
+  ],
+  "process": "sequential",
+  "verbose": true
+}
