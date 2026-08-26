@@ -5,7 +5,8 @@ description = "frio_intel using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
-    "crewai[tools]>=1.15.17,<2.0.0"
+    "crewai[tools]>=1.15.17,<2.0.0",
+    "markdown>=3.10.3",
 ]
 
 [project.scripts]
@@ -21,3 +22,8 @@ build-backend = "hatchling.build"
 [tool.crewai]
 type = "flow"
 project_id = "ca3545b5-bb44-4e39-a68d-eab8d79b8782"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

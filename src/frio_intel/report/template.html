@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Frio Market Intelligence Brief - {{TITLE}}</title>
+<style>
+  :root { --frio-blue: #0b3d62; --frio-ice: #e8f2f8; --accent: #d97706; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a2733;
+         max-width: 820px; margin: 2rem auto; padding: 0 1.5rem; line-height: 1.55; }
+  header { border-bottom: 4px solid var(--frio-blue); padding-bottom: .75rem; margin-bottom: 1.5rem; }
+  header .brand { font: 700 1.05rem/1 'Helvetica Neue', Arial, sans-serif;
+                  color: var(--frio-blue); letter-spacing: .12em; text-transform: uppercase; }
+  h1 { font-size: 1.7rem; color: var(--frio-blue); margin: .4rem 0 0; }
+  h2 { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.05rem;
+       letter-spacing: .06em; text-transform: uppercase; color: var(--frio-blue);
+       border-bottom: 1px solid var(--frio-ice); padding-bottom: .25rem; margin-top: 2rem; }
+  h2:first-of-type { margin-top: 1rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+  th, td { border: 1px solid #cfdde8; padding: .45rem .6rem; text-align: left; }
+  th { background: var(--frio-ice); font-family: 'Helvetica Neue', Arial, sans-serif; }
+  a { color: var(--accent); }
+  .confidential { font: 600 .7rem/1 'Helvetica Neue', Arial, sans-serif; color: #8a97a3;
+                  letter-spacing: .1em; text-transform: uppercase; margin-top: .5rem; }
+</style></head><body>
+<header>
+  <div class="brand">Frio Beverage Company &mdash; Market Intelligence</div>
+  <div class="confidential">Confidential &middot; Prepared for the Executive Leadership Team</div>
+</header>
+{{BODY}}
+</body></html>
