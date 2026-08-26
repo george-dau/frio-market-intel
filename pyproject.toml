@@ -13,7 +13,6 @@ dependencies = [
 kickoff = "frio_intel.main:kickoff"
 run_crew = "frio_intel.main:kickoff"
 plot = "frio_intel.main:plot"
-run_with_trigger = "frio_intel.main:run_with_trigger"
 
 [build-system]
 requires = ["hatchling"]

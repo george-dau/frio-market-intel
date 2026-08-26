@@ -1,89 +1,62 @@
 #!/usr/bin/env python
 from pathlib import Path
-
+from dotenv import load_dotenv
 from pydantic import BaseModel
+from crewai.flow.flow import Flow, and_, listen, start
 
-from crewai.flow import Flow, listen, start
+from frio_intel.agents_internal.internal_analyst import run_internal_insights_async
+from frio_intel.crews.external_research.external_research import run_external_research_async
+from frio_intel.crews.synthesis.synthesis import run_synthesis
+from frio_intel.report.models import ExecutiveBrief
+from frio_intel.report.render import save_report
 
-from frio_intel.crews.content_crew.content_crew import ContentCrew
+load_dotenv()
+REPORTS_DIR = Path(__file__).resolve().parents[2] / "reports"
+DEFAULT_QUESTION = "Should Frio Beverage Company enter the functional beverage category?"
 
+class BriefState(BaseModel):
+    question: str = DEFAULT_QUESTION
+    external_findings: str = ""
+    internal_findings: str = ""
+    brief: ExecutiveBrief | None = None
+    report_paths: list[str] = []
 
-class ContentState(BaseModel):
-    topic: str = ""
-    outline: str = ""
-    draft: str = ""
-    final_post: str = ""
-
-
-class ContentFlow(Flow[ContentState]):
-
+class MarketBriefFlow(Flow[BriefState]):
     @start()
-    def plan_content(self, crewai_trigger_payload: dict = None):
-        print("Planning content")
+    def intake(self, crewai_trigger_payload: dict | None = None):
+        if crewai_trigger_payload and crewai_trigger_payload.get("question"):
+            self.state.question = crewai_trigger_payload["question"]
+        return self.state.question
 
-        if crewai_trigger_payload:
-            self.state.topic = crewai_trigger_payload.get("topic", "AI Agents")
-            print(f"Using trigger payload: {crewai_trigger_payload}")
-        else:
-            self.state.topic = "AI Agents"
+    @listen(intake)
+    async def external_branch(self):
+        self.state.external_findings = await run_external_research_async(self.state.question)
 
-        print(f"Topic: {self.state.topic}")
+    @listen(intake)
+    async def internal_branch(self):
+        self.state.internal_findings = await run_internal_insights_async(self.state.question)
 
-    @listen(plan_content)
-    def generate_content(self):
-        print(f"Generating content on: {self.state.topic}")
-        result = (
-            ContentCrew()
-            .crew()
-            .kickoff(inputs={"topic": self.state.topic})
+    @listen(and_(external_branch, internal_branch))
+    def synthesize(self):
+        self.state.brief = run_synthesis(
+            self.state.question, self.state.external_findings, self.state.internal_findings
         )
 
-        print("Content generated")
-        self.state.final_post = result.raw
-
-    @listen(generate_content)
-    def save_content(self):
-        print("Saving content")
-        output_dir = Path("output")
-        output_dir.mkdir(exist_ok=True)
-        with open(output_dir / "post.md", "w") as f:
-            f.write(self.state.final_post)
-        print("Post saved to output/post.md")
-
+    @listen(synthesize)
+    def render_report(self):
+        slug = "frio-brief-" + "".join(c if c.isalnum() else "-" for c in self.state.question.lower())[:60].strip("-")
+        md_path, html_path = save_report(self.state.brief, REPORTS_DIR, slug)
+        self.state.report_paths = [str(md_path), str(html_path)]
+        return {"report_markdown": str(md_path), "report_html": str(html_path)}
 
 def kickoff():
-    content_flow = ContentFlow()
-    content_flow.kickoff()
-
+    flow = MarketBriefFlow()
+    result = flow.kickoff()
+    print("Reports written:", flow.state.report_paths)
+    return result
 
 def plot():
-    content_flow = ContentFlow()
-    content_flow.plot()
-
-
-def run_with_trigger():
-    """
-    Run the flow with trigger payload.
-    """
-    import json
-    import sys
-
-    if len(sys.argv) < 2:
-        raise Exception("No trigger payload provided. Please provide JSON payload as argument.")
-
-    try:
-        trigger_payload = json.loads(sys.argv[1])
-    except json.JSONDecodeError:
-        raise Exception("Invalid JSON payload provided as argument")
-
-    content_flow = ContentFlow()
-
-    try:
-        result = content_flow.kickoff({"crewai_trigger_payload": trigger_payload})
-        return result
-    except Exception as e:
-        raise Exception(f"An error occurred while running the flow with trigger: {e}")
-
+    MarketBriefFlow().plot()
 
 if __name__ == "__main__":
     kickoff()
