@@ -25,7 +25,9 @@ uv run python -m frio_intel.main
 
 Output lands in `reports/` as a Markdown file and a branded HTML file,
 named from the question. A full run costs pennies and takes under a
-minute on the shipped mini-tier model.
+minute on the shipped mini-tier model. Running the default question
+regenerates the committed sample report pair in place, so you can
+`git diff` your run against the committed reference.
 
 ## Architecture
 

@@ -34,9 +34,10 @@ def test_markdown_has_all_sections_in_order():
 
 def test_markdown_options_table_marks_recommendation():
     md = render_markdown(fixture_brief())
-    assert "| Acquire" in md and "**recommended**" in md.lower() or "Recommended" in md
+    assert "| Acquire" in md
+    assert "**Recommended**" in md
 
-def test_html_renders_and_brands(tmp_path):
+def test_html_renders_and_brands():
     html = render_html(fixture_brief())
     assert "Frio Beverage Company" in html and "<h2" in html
     assert "https://example.com/a" in html  # web citations are links

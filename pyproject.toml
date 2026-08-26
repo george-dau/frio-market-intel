@@ -1,8 +1,8 @@
 [project]
 name = "frio_intel"
 version = "0.1.0"
-description = "frio_intel using crewAI"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+description = "Multi-agent market research flow that turns an executive question into a cited, board-ready brief (CrewAI)"
+authors = [{ name = "George Dau", email = "george@txdau.com" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
     "crewai[tools]>=1.15.17,<2.0.0",

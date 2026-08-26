@@ -91,7 +91,7 @@ Deterministic (identical every run):
 - Typed Pydantic flow state; every inter-step handoff is validated
   structure, not loose prose.
 - The report contract: `output_pydantic=ExecutiveBrief`. The writer fills
-  seven typed fields; it cannot change the shape. Validation failure
+  eight typed fields; it cannot change the shape. Validation failure
   triggers framework retry.
 - Rendering: markdown/HTML generation, citation numbering, branding. No LLM
   involvement.
@@ -109,7 +109,8 @@ production a router would gate off-topic questions into clarification.
 ## Report template (the product)
 
 The deliverable is the **Frio Market Intelligence Brief**, a Pydantic model
-(`ExecutiveBrief`) with seven sections, rendered identically on every run:
+(`ExecutiveBrief`) with eight content sections plus sources, rendered
+identically on every run:
 
 1. **Executive Summary** - the verdict in the first three lines, then three
    supporting bullets (market signal, internal signal, timing/risk). BLUF:
@@ -126,8 +127,8 @@ The deliverable is the **Frio Market Intelligence Brief**, a Pydantic model
    tool could write.
 6. **Strategic Options** - build / buy / partner compared on speed, cost,
    risk, asset fit; one recommended, reasoning stated.
-7. **Recommendation & Next Steps** - verdict restated, phased 90-day plan,
-   plus Risks & Open Questions (what the system does not know).
+7. **Recommendation & Next Steps** - verdict restated, phased 90-day plan.
+8. **Risks & Open Questions** - what the system does not know.
 
 Citations are numbered inline throughout: web sources with URLs, internal
 sources by filename. The visible mix of citation types is the
@@ -162,8 +163,10 @@ Identical report content on every surface; only the surface changes.
 3. CrewAI AMP deployment (free org): kickoff via the platform's Run tab,
    execution visible in the Traces tab. Optional per the assignment;
    included because it is how the system would actually be operated.
-4. CLI: `uv run kickoff --question "..."` runs everything locally with no
-   platform account.
+4. CLI: `uv run python -m frio_intel.main` (or `crewai run`) runs the demo
+   question locally with no platform account. Custom questions come via the
+   AMP kickoff payload, or by editing `DEFAULT_QUESTION` in
+   `src/frio_intel/main.py`.
 
 ## Stack
 
