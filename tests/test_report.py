@@ -45,3 +45,13 @@ def test_save_report_writes_both(tmp_path):
     md_path, html_path = save_report(fixture_brief(), tmp_path, "test-run")
     assert md_path.exists() and html_path.exists()
     assert md_path.suffix == ".md" and html_path.suffix == ".html"
+
+def test_list_immediately_after_prose_renders_as_real_list():
+    brief = fixture_brief().model_copy(update={
+        "executive_summary": "Verdict.\n- b1\n- b2",
+    })
+    md = render_markdown(brief)
+    assert "Verdict.\n\n- b1" in md  # blank line inserted before the list
+    html = render_html(brief)
+    assert "<ul>" in html
+    assert "<li>b1" in html
