@@ -29,6 +29,29 @@ minute on the shipped mini-tier model. Running the default question
 regenerates the committed sample report pair in place, so you can
 `git diff` your run against the committed reference.
 
+## Deployment & API
+
+The system is deployed on CrewAI AMP; a push to `master` auto-redeploys.
+The deployment exposes the flow as a REST API - the same integration
+surface a Slack bot, BI tool, or internal portal would use:
+
+```bash
+curl -X POST -H "Authorization: Bearer $CREWAI_BEARER" \
+  -H "Content-Type: application/json" \
+  -d '{"inputs": {"question": "..."}}' "$FRIO_INTEL_API_URL/kickoff"
+# then poll GET /status/<kickoff_id>; the finished result carries the
+# rendered report content (the deployed filesystem is ephemeral)
+```
+
+`scripts/ask_frio.py` is a minimal terminal client over that API: it
+prompts for a question, kicks off a run, polls, and saves and opens the
+branded HTML brief (~1 minute end to end). It needs `CREWAI_BEARER` (the
+deployment's bearer token, from the AMP dashboard) in `.env`; the
+deployment URL is baked in and overridable via `FRIO_INTEL_API_URL`.
+
+The flow's typed state keeps working fields private, so the API schema
+and AMP's generated run form expose exactly one input: `question`.
+
 ## Architecture
 
 ```mermaid
