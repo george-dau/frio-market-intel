@@ -1,7 +1,6 @@
 # Frio Market Intelligence Brief
 
-A multi-agent deep research system built on CrewAI (FDE take-home,
-Option 1: Deep Research Agent).
+A multi-agent deep research system built on CrewAI.
 
 ## What this is
 
