@@ -24,7 +24,14 @@ def test_flow_runs_branches_and_renders(monkeypatch, tmp_path):
     monkeypatch.setattr(m, "REPORTS_DIR", tmp_path)
 
     flow = m.MarketBriefFlow()
-    flow.kickoff()
+    result = flow.kickoff()
     assert calls.count("external") == 1 and calls.count("internal") == 1
     assert calls.index("synth") > calls.index("external") and calls.index("synth") > calls.index("internal")
-    assert len(flow.state.report_paths) == 2
+    assert len(flow.state._report_paths) == 2
+    # AMP's filesystem is ephemeral, so the report must ride in the output
+    assert "# Frio Market Intelligence Brief" in result["report_markdown"]
+    assert "FRIO wordmark" in result["report_html"]
+
+def test_state_exposes_only_question_as_input():
+    # AMP builds the Run Flow form from public state fields
+    assert list(m.BriefState.model_fields) == ["question"]

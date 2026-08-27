@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from pathlib import Path
 from dotenv import load_dotenv
-from pydantic import BaseModel
+from pydantic import BaseModel, PrivateAttr
 from crewai.flow.flow import Flow, and_, listen, start
 
 from frio_intel.agents_internal.internal_analyst import run_internal_insights_async
@@ -15,11 +15,14 @@ REPORTS_DIR = Path(__file__).resolve().parents[2] / "reports"
 DEFAULT_QUESTION = "Should Frio Beverage Company enter the functional beverage category?"
 
 class BriefState(BaseModel):
+    """AMP builds the Run Flow input form from this model's public fields,
+    so only `question` is public; the rest are pipeline state, kept as
+    private attrs to stay out of the form."""
     question: str = DEFAULT_QUESTION
-    external_findings: str = ""
-    internal_findings: str = ""
-    brief: ExecutiveBrief | None = None
-    report_paths: list[str] = []
+    _external_findings: str = PrivateAttr(default="")
+    _internal_findings: str = PrivateAttr(default="")
+    _brief: ExecutiveBrief | None = PrivateAttr(default=None)
+    _report_paths: list[str] = PrivateAttr(default_factory=list)
 
 class MarketBriefFlow(Flow[BriefState]):
     @start()
@@ -30,29 +33,37 @@ class MarketBriefFlow(Flow[BriefState]):
 
     @listen(intake)
     async def external_branch(self):
-        self.state.external_findings = await run_external_research_async(self.state.question)
+        self.state._external_findings = await run_external_research_async(self.state.question)
 
     @listen(intake)
     async def internal_branch(self):
-        self.state.internal_findings = await run_internal_insights_async(self.state.question)
+        self.state._internal_findings = await run_internal_insights_async(self.state.question)
 
     @listen(and_(external_branch, internal_branch))
     def synthesize(self):
-        self.state.brief = run_synthesis(
-            self.state.question, self.state.external_findings, self.state.internal_findings
+        self.state._brief = run_synthesis(
+            self.state.question, self.state._external_findings, self.state._internal_findings
         )
 
     @listen(synthesize)
     def render_report(self):
         slug = "frio-brief-" + "".join(c if c.isalnum() else "-" for c in self.state.question.lower())[:60].strip("-")
-        md_path, html_path = save_report(self.state.brief, REPORTS_DIR, slug)
-        self.state.report_paths = [str(md_path), str(html_path)]
-        return {"report_markdown": str(md_path), "report_html": str(html_path)}
+        md_path, html_path = save_report(self.state._brief, REPORTS_DIR, slug)
+        self.state._report_paths = [str(md_path), str(html_path)]
+        # Return the rendered content, not just paths: on AMP the container
+        # filesystem is ephemeral and unreachable, so the execution output
+        # is the only way to get the report back.
+        return {
+            "report_markdown_path": str(md_path),
+            "report_html_path": str(html_path),
+            "report_markdown": md_path.read_text(),
+            "report_html": html_path.read_text(),
+        }
 
 def kickoff():
     flow = MarketBriefFlow()
     result = flow.kickoff()
-    print("Reports written:", flow.state.report_paths)
+    print("Reports written:", flow.state._report_paths)
     return result
 
 def plot():
