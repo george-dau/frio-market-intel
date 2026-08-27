@@ -27,7 +27,6 @@ API_URL = os.environ.get(
     "FRIO_INTEL_API_URL",
     "https://frio-intel-4c0ce13b-d159-4994-869b-79ac3664-25981cec.crewai.com",
 )
-DEFAULT_QUESTION = "Should Frio Beverage Company enter the functional beverage category?"
 REPORTS_DIR = Path(__file__).resolve().parents[1] / "reports"
 POLL_SECONDS = 5
 
@@ -48,7 +47,9 @@ def api(path: str, payload: dict | None = None) -> dict:
 def main() -> None:
     print("Frio Market Intelligence -- deployed on CrewAI AMP")
     print(f"  endpoint: {API_URL}")
-    question = input(f"\nQuestion [{DEFAULT_QUESTION}]: ").strip() or DEFAULT_QUESTION
+    question = ""
+    while not question:
+        question = input("\nEnter Question Here: ").strip()
 
     kickoff_id = api("/kickoff", {"inputs": {"question": question}})["kickoff_id"]
     print(f"\n  run started: {kickoff_id}")
