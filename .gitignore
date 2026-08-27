@@ -10,7 +10,7 @@ venv/
 docs/NOTES.md
 FDE Take-Home Assessment.pdf
 docs/PLAN.md
-docs/DEMO-SCRIPT.md
+docs/DEMO-SCRIPT*.md
 
 # CrewAI flow scaffold generator ignores (crewai create flow)
 lib/
