@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">FRIO Beverage Company square logo</title>
+  <desc id="desc">A square cream Texas beverage label with a custom teal slab-serif FRIO wordmark and a burnt-orange river current flowing through the letters.</desc>
+
+  <defs>
+    <path id="frio-letters" fill-rule="evenodd" clip-rule="evenodd" d="
+      M15 24H215V76H105V130H195V182H105V244H150V296H15V244H50V76H15V24Z
+
+      M220 24H380C446 24 485 58 485 110C485 150 464 177 430 190L511 296H420L356 200H310V244H349V296H220V244H255V76H220V24Z
+      M310 76V151H373C409 151 428 139 428 113C428 88 409 76 373 76H310Z
+
+      M530 24H680V76H635V244H680V296H530V244H575V76H530V24Z
+
+      M803 18H846C915 18 952 57 952 128V192C952 263 915 302 846 302H803C734 302 697 263 697 192V128C697 57 734 18 803 18Z
+      M807 76C774 76 758 93 758 130V190C758 227 774 244 807 244H842C875 244 891 227 891 190V130C891 93 875 76 842 76H807Z"/>
+    <clipPath id="letters-clip">
+      <use href="#frio-letters"/>
+    </clipPath>
+    <path id="hill-line" d="M0 16C38-15 75-15 112 16C150 47 188 47 226 16C264-15 301-15 338 16"/>
+  </defs>
+
+  <!-- Full-bleed cream canvas keeps exported social/profile PNGs truly square. -->
+  <rect width="800" height="800" fill="#F3E7D1"/>
+  <rect x="28" y="28" width="744" height="744" rx="92" fill="none" stroke="#126E70" stroke-width="13"/>
+  <rect x="50" y="50" width="700" height="700" rx="72" fill="none" stroke="#C65F32" stroke-width="4"/>
+
+  <g fill="none" stroke="#C65F32" stroke-width="3" opacity="0.82">
+    <use href="#hill-line" x="231" y="91"/>
+    <use href="#hill-line" x="231" y="100" opacity="0.38"/>
+  </g>
+
+  <text x="400" y="176" fill="#C65F32" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" letter-spacing="8" text-anchor="middle">TEXAS HILL COUNTRY</text>
+
+  <g transform="translate(43 222) scale(.75)">
+    <use href="#frio-letters" fill="#126E70"/>
+    <g clip-path="url(#letters-clip)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-15 165C85 126 171 204 269 164C367 124 453 200 551 162C649 124 736 202 835 160C897 134 945 143 972 159" stroke="#F3E7D1" stroke-width="25"/>
+      <path d="M-15 165C85 126 171 204 269 164C367 124 453 200 551 162C649 124 736 202 835 160C897 134 945 143 972 159" stroke="#C65F32" stroke-width="6"/>
+    </g>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="400" y="550" fill="#126E70" font-size="22" font-weight="700" letter-spacing="8">BEVERAGE CO.</text>
+    <circle cx="215" cy="542" r="5" fill="#C65F32"/>
+    <circle cx="585" cy="542" r="5" fill="#C65F32"/>
+  </g>
+
+  <!-- A quiet secondary current anchors the badge without adding another symbol. -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M190 648C262 614 326 676 400 646C474 616 538 674 610 642" stroke="#126E70" stroke-width="7"/>
+    <path d="M220 676C283 651 340 695 405 672C470 649 524 686 580 664" stroke="#C65F32" stroke-width="4" opacity="0.9"/>
+  </g>
+</svg>

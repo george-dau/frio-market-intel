@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">FRIO Beverage Company primary logo</title>
+  <desc id="desc">A cream vintage-inspired Texas beverage label with a custom teal slab-serif FRIO wordmark and a burnt-orange river current flowing through the letters.</desc>
+
+  <defs>
+    <path id="frio-letters" fill-rule="evenodd" clip-rule="evenodd" d="
+      M135 174H335V226H225V280H315V332H225V394H270V446H135V394H170V226H135V174Z
+
+      M340 174H500C566 174 605 208 605 260C605 300 584 327 550 340L631 446H540L476 350H430V394H469V446H340V394H375V226H340V174Z
+      M430 226V301H493C529 301 548 289 548 263C548 238 529 226 493 226H430Z
+
+      M650 174H800V226H755V394H800V446H650V394H695V226H650V174Z
+
+      M923 168H966C1035 168 1072 207 1072 278V342C1072 413 1035 452 966 452H923C854 452 817 413 817 342V278C817 207 854 168 923 168Z
+      M927 226C894 226 878 243 878 280V340C878 377 894 394 927 394H962C995 394 1011 377 1011 340V280C1011 243 995 226 962 226H927Z"/>
+
+    <clipPath id="letters-clip">
+      <use href="#frio-letters"/>
+    </clipPath>
+
+    <path id="hill-line" d="M0 16C38-15 75-15 112 16C150 47 188 47 226 16C264-15 301-15 338 16"/>
+  </defs>
+
+  <!-- Simplified soda-label frame -->
+  <rect x="28" y="28" width="1144" height="544" rx="82" fill="#F3E7D1" stroke="#126E70" stroke-width="12"/>
+  <rect x="49" y="49" width="1102" height="502" rx="64" fill="none" stroke="#C65F32" stroke-width="4"/>
+
+  <!-- Hill Country cue: two restrained rolling-hill strokes -->
+  <g fill="none" stroke="#C65F32" stroke-width="3" opacity="0.82">
+    <use href="#hill-line" x="431" y="72"/>
+    <use href="#hill-line" x="431" y="81" opacity="0.38"/>
+  </g>
+
+  <g fill="#C65F32" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="9" text-anchor="middle">
+    <text x="600" y="126">TEXAS HILL COUNTRY</text>
+  </g>
+
+  <!-- Custom condensed slab-serif wordmark -->
+  <use href="#frio-letters" fill="#126E70"/>
+
+  <!-- The cream channel gives the current room to breathe; orange is the waterline. -->
+  <g clip-path="url(#letters-clip)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M105 315C205 276 291 354 389 314C487 274 573 350 671 312C769 274 856 352 955 310C1017 284 1065 293 1092 309" stroke="#F3E7D1" stroke-width="25"/>
+    <path d="M105 315C205 276 291 354 389 314C487 274 573 350 671 312C769 274 856 352 955 310C1017 284 1065 293 1092 309" stroke="#C65F32" stroke-width="6"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="600" y="506" fill="#126E70" font-size="22" font-weight="700" letter-spacing="8">BEVERAGE CO.</text>
+    <circle cx="397" cy="498" r="5" fill="#C65F32"/>
+    <circle cx="803" cy="498" r="5" fill="#C65F32"/>
+  </g>
+</svg>

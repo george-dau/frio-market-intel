@@ -2,25 +2,45 @@
 <html lang="en"><head><meta charset="utf-8">
 <title>Frio Market Intelligence Brief - {{TITLE}}</title>
 <style>
-  :root { --frio-blue: #0b3d62; --frio-ice: #e8f2f8; --accent: #d97706; }
+  :root { --frio-teal: #126E70; --frio-cream: #F3E7D1; --accent: #C65F32; }
   body { font-family: Georgia, 'Times New Roman', serif; color: #1a2733;
          max-width: 820px; margin: 2rem auto; padding: 0 1.5rem; line-height: 1.55; }
-  header { border-bottom: 4px solid var(--frio-blue); padding-bottom: .75rem; margin-bottom: 1.5rem; }
+  header { border-bottom: 4px solid var(--frio-teal); padding-bottom: .75rem; margin-bottom: 1.5rem; }
+  header .logo { width: 150px; height: auto; display: block; margin-bottom: .5rem; }
   header .brand { font: 700 1.05rem/1 'Helvetica Neue', Arial, sans-serif;
-                  color: var(--frio-blue); letter-spacing: .12em; text-transform: uppercase; }
-  h1 { font-size: 1.7rem; color: var(--frio-blue); margin: .4rem 0 0; }
+                  color: var(--frio-teal); letter-spacing: .12em; text-transform: uppercase; }
+  h1 { font-size: 1.7rem; color: var(--frio-teal); margin: .4rem 0 0; }
   h2 { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.05rem;
-       letter-spacing: .06em; text-transform: uppercase; color: var(--frio-blue);
-       border-bottom: 1px solid var(--frio-ice); padding-bottom: .25rem; margin-top: 2rem; }
+       letter-spacing: .06em; text-transform: uppercase; color: var(--frio-teal);
+       border-bottom: 1px solid var(--frio-cream); padding-bottom: .25rem; margin-top: 2rem; }
   h2:first-of-type { margin-top: 1rem; }
   table { border-collapse: collapse; width: 100%; font-size: .92rem; }
-  th, td { border: 1px solid #cfdde8; padding: .45rem .6rem; text-align: left; }
-  th { background: var(--frio-ice); font-family: 'Helvetica Neue', Arial, sans-serif; }
+  th, td { border: 1px solid #d9cdb6; padding: .45rem .6rem; text-align: left; }
+  th { background: var(--frio-cream); font-family: 'Helvetica Neue', Arial, sans-serif; }
   a { color: var(--accent); }
   .confidential { font: 600 .7rem/1 'Helvetica Neue', Arial, sans-serif; color: #8a97a3;
                   letter-spacing: .1em; text-transform: uppercase; margin-top: .5rem; }
 </style></head><body>
 <header>
+  <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-label="FRIO wordmark">
+    <defs>
+      <path id="frio-letters" fill-rule="evenodd" clip-rule="evenodd" d="
+        M15 24H215V76H105V130H195V182H105V244H150V296H15V244H50V76H15V24Z
+        M220 24H380C446 24 485 58 485 110C485 150 464 177 430 190L511 296H420L356 200H310V244H349V296H220V244H255V76H220V24Z
+        M310 76V151H373C409 151 428 139 428 113C428 88 409 76 373 76H310Z
+        M530 24H680V76H635V244H680V296H530V244H575V76H530V24Z
+        M803 18H846C915 18 952 57 952 128V192C952 263 915 302 846 302H803C734 302 697 263 697 192V128C697 57 734 18 803 18Z
+        M807 76C774 76 758 93 758 130V190C758 227 774 244 807 244H842C875 244 891 227 891 190V130C891 93 875 76 842 76H807Z"/>
+      <clipPath id="letters-clip">
+        <use href="#frio-letters"/>
+      </clipPath>
+    </defs>
+    <use href="#frio-letters" fill="#126E70"/>
+    <g clip-path="url(#letters-clip)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-15 165C85 126 171 204 269 164C367 124 453 200 551 162C649 124 736 202 835 160C897 134 945 143 972 159" stroke="#F3E7D1" stroke-width="25"/>
+      <path d="M-15 165C85 126 171 204 269 164C367 124 453 200 551 162C649 124 736 202 835 160C897 134 945 143 972 159" stroke="#C65F32" stroke-width="6"/>
+    </g>
+  </svg>
   <div class="brand">Frio Beverage Company &mdash; Market Intelligence</div>
   <div class="confidential">Confidential &middot; Prepared for the Executive Leadership Team</div>
 </header>
